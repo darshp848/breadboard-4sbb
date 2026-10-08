@@ -1,6 +1,6 @@
 # breadboard-4sbb
 
-Four-switch bidirectional buck-boost DC-DC converter for a 30 V input and 15–60 V output, built on a breadboard with IRFP260N MOSFETs and a hand-wound 557 µH air-core inductor.
+Four-switch bidirectional buck-boost DC-DC converter for a 30 V input and 15–60 V output, built on a breadboard with IRFP260N MOSFETs and a hand-wound air-core inductor that measures 558 µH at 50 kHz.
 
 This repository holds the design calculator, the measured inductor data, a Simulink power-stage model, and the handwritten design equations ([4sbb-equations.pdf](4sbb-equations.pdf)).
 
