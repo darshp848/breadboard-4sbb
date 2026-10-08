@@ -1,0 +1,184 @@
+
+Analytical estimates; gate-driver and thermal-path defaults are illustrative.
+Losses omit reverse recovery, wiring and unmodeled effects.
+
+Operating point
+  mode: transition
+  DA (input HS): 0.7
+  DB (output HS): 0.7
+  boost low-side duty: 0.3
+  R_load [ohm]: 30
+  Iout [A]: 1
+  Pout [W]: 30
+
+Mode ranges
+  buck Vin above [V]: 30.5
+  boost Vin below [V]: 29.5
+  transition Vin lower [V]: 29.5
+  transition Vin upper [V]: 30.5
+  sweep Vin min [V]: 10
+  sweep Vin max [V]: 30
+
+Inductor
+  switching period [s]: 2e-05
+  IL average [A]: 1.428571
+  Iin ideal [A]: 1
+  IL ripple [App]: 0.3231598
+  IL peak [A]: 1.590151
+  IL min [A]: 1.266992
+  IL RMS [A]: 1.434044
+  CCM: True
+  minimum IL average for CCM [A]: 0.1615799
+  minimum output current for CCM [A]: 0.1131059
+  required Isat [A]: 2.385227
+  L for target ripple [H]: 0.00042
+  target ripple [App]: 0.4285714
+  inductor peak energy [J]: 0.0007042099
+  inductor DC copper loss [W]: 2.428571
+  inductor AC ripple loss [W]: 0.2944989
+  inductor copper loss [W]: 2.72307
+  inductor core loss [W]: unavailable (supply core parameters)
+  VL average [V]: 0
+  VL min [V]: -30
+  VL max [V]: 30
+
+Capacitors
+  Cin minimum [F]: 2.237162e-05
+  Cout minimum [F]: 2.237162e-05
+  Cin RMS current [A]: 0.6645491
+  Cout RMS current [A]: 0.6645491
+  input capacitive ripple [Vpp]: 0.06
+  output capacitive ripple [Vpp]: 0.06
+  input ESR ripple estimate [Vpp]: 0.03180303
+  output ESR ripple estimate [Vpp]: 0.03180303
+  input total ripple estimate [Vpp]: 0.09180303
+  output total ripple estimate [Vpp]: 0.09180303
+  Cin ESR loss [W]: 0.008832509
+  Cout ESR loss [W]: 0.008832509
+
+Gate drive
+  switching MOSFET count: 4
+  average gate current per switching FET [A]: 0.0117
+  gate power per switching FET [W]: 0.1755
+  total dynamic gate current [A]: 0.0468
+  gate dynamic power [W]: 0.702
+  driver supply current incl Iq [A]: 0.0538
+  driver quiescent loss [W]: 0.06
+  gate charge frequency limit [Hz]: 284900.3
+  Miller source current [A]: 0.7692308
+  Miller sink current [A]: 0.3846154
+  Miller rise time [s]: 1.43e-07
+  Miller fall time [s]: 2.86e-07
+  gate resistance total for target rise [ohm]: 9.090909
+  external gate resistance for target rise [ohm]: 6.090909
+  pulldown resistance [ohm]: 10000
+  pulldown on current per FET [A]: 0.0015
+  pulldown on power per FET [W]: 0.0225
+  pulldown total average loss [W]: 0.045
+
+Timing
+  required dead time lower bound [s]: 3.91e-07
+  configured dead time [s]: 5e-07
+  dead time meets lower bound: True
+  dead time fraction per switched leg: 0.05
+  minimum effective on pulse [s]: 1e-06
+  minimum effective off pulse [s]: 1e-06
+  practical duty min: 0.05
+  practical duty max: 0.95
+  pulse frequency limit at operating duties [Hz]: 300000
+  maximum estimated switching frequency [Hz]: 284900.3
+  A high-side on time [s]: 1.4e-05
+  A high-side off time [s]: 6e-06
+  A duty practical: True
+  B high-side on time [s]: 1.4e-05
+  B high-side off time [s]: 6e-06
+  B duty practical: True
+
+MOSFET A_HS
+  duty: 0.7
+  RMS current [A]: 1.199807
+  required peak current above [A]: 1.590151
+  blocking voltage [V]: 30
+  suggested Vds rating at 1.5x [V]: 45
+  conduction loss [W]: 0.08637221
+  switching overlap loss [W]: 0.4596429
+  Coss loss [W]: 0.0135675
+  body diode loss [W]: 0.04642857
+  total FET loss [W]: 0.6060111
+
+MOSFET A_LS
+  duty: 0.3
+  RMS current [A]: 0.7854581
+  required peak current above [A]: 1.590151
+  blocking voltage [V]: 30
+  suggested Vds rating at 1.5x [V]: 45
+  conduction loss [W]: 0.03701666
+  switching overlap loss [W]: 0.4596429
+  Coss loss [W]: 0.0135675
+  body diode loss [W]: 0.04642857
+  total FET loss [W]: 0.5566556
+
+MOSFET B_HS
+  duty: 0.7
+  RMS current [A]: 1.199807
+  required peak current above [A]: 1.590151
+  blocking voltage [V]: 30
+  suggested Vds rating at 1.5x [V]: 45
+  conduction loss [W]: 0.08637221
+  switching overlap loss [W]: 0.4596429
+  Coss loss [W]: 0.0135675
+  body diode loss [W]: 0.04642857
+  total FET loss [W]: 0.6060111
+
+MOSFET B_LS
+  duty: 0.3
+  RMS current [A]: 0.7854581
+  required peak current above [A]: 1.590151
+  blocking voltage [V]: 30
+  suggested Vds rating at 1.5x [V]: 45
+  conduction loss [W]: 0.03701666
+  switching overlap loss [W]: 0.4596429
+  Coss loss [W]: 0.0135675
+  body diode loss [W]: 0.04642857
+  total FET loss [W]: 0.5566556
+
+Junction temperatures
+  A_HS junction estimate [degC]: 49.24045
+  A_HS below maximum junction temperature: True
+  A_LS junction estimate [degC]: 47.26622
+  A_LS below maximum junction temperature: True
+  B_HS junction estimate [degC]: 49.24045
+  B_HS below maximum junction temperature: True
+  B_LS junction estimate [degC]: 47.26622
+  B_LS below maximum junction temperature: True
+
+Loss budget
+  core loss included: False
+  modeled total loss [W]: 5.873069
+  estimated Pin [W]: 35.87307
+  estimated Iin including losses [A]: 1.195769
+  estimated efficiency [%]: 83.6282
+  estimated Iin within supply limit: True
+
+Switching simulation
+  ideal-duty lossless IL average [A]: 1.428056
+  ideal-duty lossless IL ripple [App]: 0.3233051
+  ideal-duty lossless Vout average [V]: 29.98983
+  ideal-duty lossless Vout ripple [Vpp]: 0.08520346
+  regulated Vin [V]: 30
+  regulated DA: 0.762381
+  regulated DB: 0.7
+  regulated series resistance [ohm]: 1.31
+  regulated IL average [A]: 1.425372
+  regulated IL ripple [App]: 0.3031449
+  regulated IL peak [A]: 1.569572
+  regulated IL min [A]: 1.266427
+  regulated Vout average [V]: 29.99597
+  regulated Vout ripple [Vpp]: 0.0852169
+
+Checks
+  No analytical-limit violations detected.
+  Efficiency is a partial estimate: core loss is unavailable.
+Saved plot: C:\Users\darsh\TAMU\EMPE_Lab\12kW_gemini_3phase_inverter\breadboard-4sbb\state-space.png
+Saved plot: C:\Users\darsh\TAMU\EMPE_Lab\12kW_gemini_3phase_inverter\breadboard-4sbb\state-space-sweep.png
+Saved plot: C:\Users\darsh\TAMU\EMPE_Lab\12kW_gemini_3phase_inverter\breadboard-4sbb\state-space-switching.png

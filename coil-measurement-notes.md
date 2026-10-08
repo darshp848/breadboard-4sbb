@@ -1,0 +1,23 @@
+# Coil measurements — 2026-10-07
+
+Source: a photo album of the meter screen (not published). Nineteen instrument readings and one coil/setup photo were inspected. The meter is a Keysight E4980AL, using Ls–Rs, auto range, medium measurement time, 1 m OPEN/SHORT correction, BIAS 0 V, and IDC/VDC monitoring OFF. Photo order is retained in the CSV; the 1 V series is not in frequency order. Missing frequencies are not invented or extrapolated.
+
+The user identifies a 3D-printed plastic former, no magnetic core, and approximately 24 AWG magnet wire (gauge unconfirmed). Treat this as an air-core coil: no magnetic saturation-current threshold applies. A winding current/temperature limit still exists, but cannot be determined from wire gauge and this frequency sweep alone. [Coilcraft air-core documentation](https://cps.coilcraft.com/en-us/products/rf/air-core-inductors/) describes current-independent inductance. [Coilcraft current/temperature notes](https://www.coilcraft.com/en-us/resources/application-notes/current-and-temperature-ratings/) distinguish magnetic saturation and thermal current ratings.
+
+The nominal LEVEL and monitored VAC/IAC are separate fields. For example, at 20 Hz with LEVEL 1 V, VAC is only 11.7179 mV and IAC is 9.87516 mA. The CSV records the displayed monitors, rather than assuming the coil sees the nominal source voltage. The [Keysight E4980AL specifications](https://www.keysight.com/us/en/product/E4980AL/precision-lcr-meter-20-hz-300-khz-500-khz-1-mhz.html) and [E4980A/AL user guide](https://www.keysight.com/zz/en/assets/9018-05655/user-manuals/9018-05655.pdf), “Test Signal Level Setting,” are the primary instrument references.
+
+Research gate before implementation: the local calculator uses SI inputs and a 50 kHz example; NumPy and Matplotlib 3.10.8 are available. Use Python's standard csv reader and Matplotlib pyplot, with log frequency axes and measured points at both test levels. Supported calculations are XL = 2πfLs, |Z| = sqrt(Rs² + XL²), Q = XL/Rs, and a reference-frequency Ls selected independently for each test level. Interpolate only inside the measured range, using log-frequency interpolation, and identify interpolation in output. These are measured equivalent series parameters; Rs is not a DC winding resistance or a large-signal PWM loss model.
+
+Plausible failures: mistaking 20 Hz for 100 Hz on the first photo; transcribing blurred thumbnails; mixing uH/H or mA/uA; assuming LEVEL equals terminal VAC; confusing frequency dependence with saturation; using high-frequency Rs as DCR; smoothing or extrapolating missing measurements. Bounded diagnostic: verify every row is positive and finite, preserve all 19 source readings, and compare VAC/IAC against the calculated |Z|. Resolve substantial discrepancies before drawing conclusions. Then generate the plots and inspect the saved figures.
+
+Frequency dependence in the measured Ls and Rs may involve winding skin/proximity effects, parasitic capacitance and fixture effects; these data do not isolate their causes. The falling Ls is not evidence of magnetic saturation in the reported plastic-former coil.
+
+For a current limit, measure the coil's DC winding resistance separately, identify the plastic and enamel temperature limits, and measure steady-state temperature rise under the intended cooling and current waveform. The optional script calculation I = sqrt(Pallowed/Rdc) is a conditional DC loss budget, not a certified winding current rating. No repeat saturation test is needed for an air-core coil.
+
+## Verification and result
+
+All 19 source rows passed the bounded impedance consistency check: maximum absolute difference is 0.0039%. The first photo was enlarged to confirm 20 Hz and 100 mV; blurry thumbnails were revisited after full images loaded. One setup photo (album index 2) has no meter reading and is excluded. Series counts: nine at 100 mV and ten at 1 V.
+
+`python breadboard-4sbb/plot-coil.py --no-show` completed successfully. The saved plot was inspected for both series, units, log frequency axes, frequency ordering, and the single-series 1 MHz point. Additional checks passed for reference-frequency selection, mean Ls, no finite Isat for the air-core coil, log-frequency interpolation, refusal to extrapolate, and the conditional DC loss formula. The original converter calculator was not changed.
+
+At 50 kHz: 100 mV Ls = 558.6351 µH, Rs = 17.25716 ohm; 1 V Ls = 557.5985 µH, Rs = 18.82236 ohm. The descriptive mean Ls is 558.1168 µH, with a −0.1856% change between the test levels. At 20 Hz the mean of the two measured Ls values is 633.8102 µH. These are measurements at different operating frequencies, not one universal coil inductance.
